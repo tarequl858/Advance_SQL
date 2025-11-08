@@ -8,18 +8,6 @@ SELECT
          LIMIT 1 OFFSET 1),
     NULL) AS SecondHighestSalary;
 
-# MS SQL SERVER
-
-SELECT ISNULL(
-    (
-        SELECT DISTINCT TOP 1 salary
-        FROM Employee
-        WHERE salary < (SELECT MAX(salary) FROM Employee)
-        ORDER BY salary DESC
-    ),
-    NULL
-) AS SecondHighestSalary;
-
 # POSTGRESQL
 
 SELECT 
@@ -29,15 +17,6 @@ SELECT
          ORDER BY salary DESC
          OFFSET 1 LIMIT 1),
     NULL) AS SecondHighestSalary;
-
-# ORACLE
-
-SELECT NVL(
-    MAX(salary),
-    NULL
-) AS SecondHighestSalary
-FROM Employee
-WHERE salary < (SELECT MAX(salary) FROM Employee);
 
 # Pandas
 
